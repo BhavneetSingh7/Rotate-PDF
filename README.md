@@ -4,6 +4,7 @@ Rotate specific pages in your pdf file
 rotation is CLOCKWISE
 
 syntax ==> 
+
            ':' - Angle separator
 
            '-' - Bundles pages both inclusive
