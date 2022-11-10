@@ -9,5 +9,7 @@ def index():
     return render_template('index.html',)
 
 @app.post('/')
-def index():
+def pdf_post():
     return 'Upload pdf'
+
+# flask --app rotate_pdf run
