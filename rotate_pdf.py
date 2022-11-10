@@ -6,7 +6,6 @@ app = Flask(__name__)
 UPLOADED_FILE_PATH = 'tmp'
 app.config['UPLOAD_FOLDER'] = UPLOADED_FILE_PATH
 ALLOWED_EXTENSIONS = ('pdf')
-i = 1
 
 @app.get('/')
 def index():
@@ -14,12 +13,21 @@ def index():
 
 @app.post('/')
 def pdf_post():
-    print(request.files['pdf-file'])
+    #Saving file in server
     pdf = request.files['pdf-file']
-    FILENAME = secure_filename('pdf-'+str(i))
+    FILENAME = secure_filename('pdf-')
     pdf.save(os.path.join(app.config['UPLOAD_FOLDER'],FILENAME))
-    return 'Uploaded pdf'
 
-i += 1
+    #Specified pages and page angles
+    pages = request.form['page-angles']
+    pages = pages.split(',')
+    for i in range(len(pages)):
+        pages[i] = pages[i].split(':')
+    print(pages)
+    pdf_file_meta = {
+        'filename':FILENAME,
+        'page_data':pages,
+    }
+    return pdf_file_meta
 
 # flask --app rotate_pdf run
