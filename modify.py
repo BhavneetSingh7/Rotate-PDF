@@ -1,5 +1,9 @@
 from PyPDF2 import PdfFileReader, PdfFileWriter
-from flask import send_file
+
+"""
+Utility for the application that handles all the pages rotation, and saving the output file
+
+"""
 
 #  Resolves batches in individual pages
 def resolve_batch(s:str):
